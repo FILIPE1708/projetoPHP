@@ -3,7 +3,7 @@
 $anoNascimento = 2001;
 $nome1 = 'Filipe';
 $sobrenome = 'Cavalcante';
-$nomeCompleto = $nome1 + $sobrenome;
+$nomeCompleto = $nome1 .' '. $sobrenome;
 
 echo $nome1;
 echo '<br>';

@@ -1,11 +1,11 @@
 <?php
 
-function ola($texto = 'mundo'){
-    return "Olá $texto <br>";
+function ola($texto = 'mundo', $periodo = 'Bom dia'){
+    return "Olá $texto <br> $periodo <br>";
 }
 
 echo ola();
-echo ola('');
-echo ola('Filipe');
+echo ola('', 'Boa noite');
+echo ola('Filipe', 'Boa tarde');
 
 ?>

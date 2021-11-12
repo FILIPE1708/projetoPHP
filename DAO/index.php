@@ -37,10 +37,18 @@ echo $user;*/
 $user->insert();
 echo $user;*/
 
-//
-$alterar = new Usuario();
+//Altera usuários
+/*$alterar = new Usuario();
 $alterar->loadById(7);
 $alterar->update('Professor', '910812');
-echo $alterar;
+
+echo $alterar;*/
+
+//Deletar usuário
+$deletar = new Usuario();
+$deletar->loadById(7);
+$deletar->delete();
+
+echo $deletar;
 
 ?>

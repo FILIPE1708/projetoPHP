@@ -45,11 +45,7 @@ class Usuario{
         ));
 
         if (count($result) > 0) {
-            $row = $result[0];
-            $this->setId_usuario($row['id_usuario']);
-            $this->setDes_login($row['des_login']);
-            $this->setDes_senha($row['des_senha']);
-            $this->setDt_cadastro(new DateTime($row['dt_cadastro']));
+            $this->setData($result[0]);
         }
     }
 
@@ -73,16 +69,48 @@ class Usuario{
         ));
 
         if (count($result) > 0) {
-            $row = $result[0];
-            $this->setId_usuario($row['id_usuario']);
-            $this->setDes_login($row['des_login']);
-            $this->setDes_senha($row['des_senha']);
-            $this->setDt_cadastro(new DateTime($row['dt_cadastro']));
+            $this->setData($result[0]);
         }
 
         else{
             throw new Exception('Login ou senha incorretos!!');
         }
+    }
+
+    public function setData($data){
+        $this->setId_usuario($data['id_usuario']);
+        $this->setDes_login($data['des_login']);
+        $this->setDes_senha($data['des_senha']);
+        $this->setDt_cadastro(new DateTime($data['dt_cadastro']));
+    }
+
+    public function insert(){
+        $sql = new Sql();
+        $result = $sql->select('CALL sp_usuarios_insert(:LOGIN, :PASSWORD)', array(
+            ':LOGIN'=>$this->getDes_login(),
+            ':PASSWORD'=>$this->getDes_senha()
+        ));
+
+        if (count($result) > 0) {
+            $this->setData($result[0]);
+        }
+    }
+
+    public function update($login, $password){
+        $this->setDes_login($login);
+        $this->setDes_senha($password);
+
+        $sql = new Sql();
+        $sql->consulta('UPDATE tb_usuarios SET des_login = :LOGIN, des_senha = :PASSWORD WHERE id_usuario = :ID', array(
+            ':LOGIN'=>$this->getDes_login(),
+            ':PASSWORD'=>$this->getDes_senha(),
+            ':ID'=>$this->getId_usuario()
+        ));
+    }
+
+    public function __construct($login = '', $password = ''){
+        $this->setDes_login($login);
+        $this->setDes_senha($password);
     }
 
     public function __toString(){

@@ -20,8 +20,27 @@ echo json_encode($lista);*/
 echo json_encode($busca);*/
 
 //Carrega o usuário se o login e a senha estiverem corretos
-$login = new Usuario();
+/*$login = new Usuario();
 $login->login('Filipe', '3456788');
-echo ($login);
+echo ($login);*/
+
+//Inserção de novos usuários
+/*$user = new Usuario('User', '123456');
+$user->setDes_login('User');
+$user->setDes_senha('123456');
+$user->insert();
+
+echo $user;*/
+
+//Inserção de novos usuários(Construtor)
+/*$user = new Usuario('User', '123456');
+$user->insert();
+echo $user;*/
+
+//
+$alterar = new Usuario();
+$alterar->loadById(7);
+$alterar->update('Professor', '910812');
+echo $alterar;
 
 ?>
